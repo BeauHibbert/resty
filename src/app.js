@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './app.scss';
 
@@ -9,15 +9,19 @@ import Footer from './components/footer';
 import Form from './components/form';
 import Results from './components/results';
 
+const [data, setData] = useState(null);
+const [requestParams, setRequestParams] = useState({});
+
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: null,
-      requestParams: {},
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     data: null,
+  //     requestParams: {},
+  //   };
+  // }
+
 
   callApi = (requestParams) => {
     // mock output
@@ -28,7 +32,9 @@ class App extends React.Component {
         {name: 'fake thing 2', url: 'http://fakethings.com/2'},
       ],
     };
-    this.setState({data, requestParams});
+    // this.setState({data, requestParams});
+    setData(data);
+    setRequestParams(requestParams);
   }
 
   render() {

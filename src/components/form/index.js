@@ -6,12 +6,14 @@ function Form() {
 
   let [method, setMethod] = useState('');
   let [url, setUrl] = useState('');
+  let [body, setBody] = useState('');
 
   handleSubmit = e => {
     e.preventDefault();
     const formData = {
       method,
       url,
+      body,
     };
     this.props.handleApiCall(formData);
   }
@@ -23,6 +25,7 @@ function Form() {
     if (name === 'post' && checked) setMethod(value);
     if (name === 'put' && checked) setMethod(value);
     if (name === 'delete' && checked) setMethod(value);
+    if (name === 'requestBody') setBody(value);
   }
 
   return (
@@ -37,6 +40,10 @@ function Form() {
           <input type="radio" name="post" id="post" onChange={onChange}>POST</input>
           <input type="radio" name="put" id="put" onChange={onChange}>PUT</input>
           <input type="radio" name="delete" id="delete" onChange={onChange}>DELETE</input>
+        </label>
+        <label>
+        <span>request body: </span>
+          <input name='requestBody' type='text' onChange={onChange}/>
         </label>
         <button type="submit">GO!</button>
       </form>
